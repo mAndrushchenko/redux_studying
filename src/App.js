@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { HomeRedux } from "./components/redux/home_redux";
+import { HomeReduxToolkit } from "./components/redux_toolkit/home_redux_toolkit";
+
+const App = () => (
+  <Router>
+    <Switch>
+      <Route path="/toolkit"><HomeReduxToolkit/></Route>
+      <Route path="/*"><HomeRedux/></Route>
+    </Switch>
+  </Router>
+);
 
 export default App;
