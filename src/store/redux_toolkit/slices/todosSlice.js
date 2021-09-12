@@ -31,27 +31,28 @@ export const todosSlice = createSlice({
       });
     },
 
-    deleteAllTodos: () => ([])
+    deleteAllTodos: () => []
   },
   extraReducers: {
     // Get todos
     [getTodos.pending]: () => {
       console.log("%cGet todos. Pending...", "color: #FFFF33");
     },
-    [getTodos.fulfilled]: (state, action ) => {
-      console.log('%cSuccess', 'color: #228B22');
-      return [...state, ...action.payload.slice(0, 10)]
+    [getTodos.fulfilled]: (state, action) => {
+      console.log("%cSuccess", "color: #228B22");
+      return [ ...state, ...action.payload.slice(0, 10) ];
     },
     [getTodos.rejected]: () => {
       console.error("Error with request \"Get todos\"");
     },
+
     // Get todo by id
     [getTodoById.pending]: () => {
       console.log("%cGet todo by id. Pending...", "color: #FFFF33");
     },
     [getTodoById.fulfilled]: (state, action) => {
-      console.log('%cSuccess', 'color: #228B22');
-      return [ ...state, action.payload ];
+      console.log("%cSuccess", "color: #228B22");
+      state.push(action.payload);
     },
     [getTodoById.rejected]: () => {
       console.error("Error with request \"Get todo by id\"");

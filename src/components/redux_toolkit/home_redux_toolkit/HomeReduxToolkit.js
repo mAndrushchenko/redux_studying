@@ -5,11 +5,10 @@ import { Box, Button, Container } from "@material-ui/core";
 
 import { TodoList } from "../todo_list";
 import { useDispatch } from "react-redux";
-import { deleteAllTodos, getTodos, getTodoById } from "../../../store/redux_toolkit/slices/todosSlice";
+import { deleteAllTodos, getTodos, getTodoById, addTodo } from "../../../store/redux_toolkit/slices/todosSlice";
 
 export const HomeReduxToolkit = () => {
   const dispatch = useDispatch();
-
   const [ isModalOpen, setIsModalOpen ] = useState(false);
 
   const openModal = () => {
@@ -29,8 +28,22 @@ export const HomeReduxToolkit = () => {
   }
 
   const onGetTodoById = () => {
-    dispatch(getTodoById(12))
+    dispatch(getTodoById(500))
   }
+
+  const onAddTodo = (e) => {
+    e.preventDefault();
+    const title  = e.target[0].value
+
+    const todo = {
+      title,
+      id: Date.now(),
+      completed: false
+    }
+
+    dispatch(addTodo({ todo }));
+    closeModal();
+  };
 
   return (
     <Container maxWidth="sm">
@@ -45,7 +58,7 @@ export const HomeReduxToolkit = () => {
         <Button onClick={onDeleteAllTodos} variant="contained" color="secondary">Delete all Todos</Button>
       </Box>
 
-      <ModalAddTodo isModalOpen={isModalOpen} closeModal={closeModal}/>
+      <ModalAddTodo isModalOpen={isModalOpen} closeModal={closeModal} onAddTodo={onAddTodo}/>
     </Container>
   );
 };
