@@ -1,3 +1,5 @@
+import { todosToolkitApi } from "../../../api/todosToolkitApi";
+
 export const addTodo = todo => ({
     type: 'TODO:ADD_ITEM',
     payload: todo
@@ -22,11 +24,12 @@ export const deleteTodo = id => ({
     payload: id
 });
 
-export const getTodoById = ({ id }) => dispatch => {
-
+export const getTodoById = ({ id }) => async dispatch => {
+    const res = await todosToolkitApi.getTodoById(id);
+    dispatch(addTodo(res));
 }
 
-export const getTodos = () => dispatch => {
-    // api request
-    // success -> dispatch(addTodos(data))
+export const getTodos = () => async dispatch => {
+    const res = await todosToolkitApi.getTodos();
+    dispatch(addTodos(res.slice(0, 10)))
 }

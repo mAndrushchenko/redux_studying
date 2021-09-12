@@ -9,12 +9,16 @@ import { HomeReduxToolkit } from "./components/redux_toolkit/home_redux_toolkit"
 const App = () => (
   <Router>
     <Switch>
-      <Provider store={toolkitStore}>
-        <Route path="/toolkit"><HomeReduxToolkit/></Route>
-      </Provider>
-      <Provider store={store}>
-        <Route path="/*"><HomeRedux/></Route>
-      </Provider>
+      <Route path="/">
+        <Provider store={store}>
+          <HomeRedux/>
+        </Provider>
+      </Route>
+      <Route path="/toolkit">
+        <Provider store={toolkitStore}>
+          <HomeReduxToolkit/>
+        </Provider>
+      </Route>
     </Switch>
   </Router>
 );

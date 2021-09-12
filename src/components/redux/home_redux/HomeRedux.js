@@ -25,7 +25,7 @@ export const HomeRedux = () => {
   };
 
   const onGetTodos = () => {
-    dispatch(getTodos())
+    dispatch(getTodos());
   }
 
   const onGetTodoById = () => {

@@ -8,10 +8,9 @@ export const TodoReducer = (state = initialState, {type, payload}) => {
     switch (type) {
         case 'TODO:ADD_ITEMS':
             return {
-                todos: payload
+                todos: [...state.todos, ...payload]
             }
         case 'TODO:ADD_ITEM':
-            console.log(payload);
             return {
                 todos: [...state.todos, payload]
             }
