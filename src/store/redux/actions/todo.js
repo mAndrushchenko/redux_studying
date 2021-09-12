@@ -1,34 +1,32 @@
-const TodoActions = {
-    addTodo: todo => ({
-        type: 'POLL_LIST:SET_DATA',
-        payload: todo
-    }),
+export const addTodo = todo => ({
+    type: 'TODO:ADD_ITEM',
+    payload: todo
+});
 
-    toggleTodo: id => ({
-        type: 'POLL_LIST:REMOVE_POLL',
-        payload: id
-    }),
+export const toggleTodo = id => ({
+    type: 'TODO:TOGGLE',
+    payload: id
+});
 
-    deleteAllTodos: () => ({
-       type: 'TODO:REMOVE_ALL'
-    }),
+export const deleteAllTodos = () => ({
+   type: 'TODO:REMOVE_ALL'
+});
 
-    setTodos: todos => ({
-        type: 'TODO:SET_ITEMS',
-        payload: todos
-    }),
+export const addTodos = todos => ({
+    type: 'TODO:ADD_ITEMS',
+    payload: todos
+});
 
-    deleteTodo: id => {
-        return {
-            type: 'TODO:REMOVE',
-            payload: id
-        }
-    },
+export const deleteTodo = id => ({
+    type: 'TODO:REMOVE',
+    payload: id
+});
 
-    fetchTodos: () => dispatch => {
-        // api request
-        // success -> dispatch(TodoActions.setTodos(data))
-    }
-};
+export const getTodoById = ({ id }) => dispatch => {
 
-export default TodoActions;
+}
+
+export const getTodos = () => dispatch => {
+    // api request
+    // success -> dispatch(addTodos(data))
+}
