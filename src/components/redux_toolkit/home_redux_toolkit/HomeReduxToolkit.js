@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { ModalAddTodo } from "../modal_add_todo";
-import { Box, Button, Container } from "@material-ui/core";
+import { Box, Button, Container, Input } from "@material-ui/core";
 
 import { TodoList } from "../todo_list";
 import { useDispatch } from "react-redux";
@@ -9,6 +9,8 @@ import { deleteAllTodos, getTodos, getTodoById, addTodo } from "../../../store/r
 
 export const HomeReduxToolkit = () => {
   const dispatch = useDispatch();
+
+  const [ reqTodoId, setReqTodoId ] = useState(1)
   const [ isModalOpen, setIsModalOpen ] = useState(false);
 
   const openModal = () => {
@@ -28,7 +30,11 @@ export const HomeReduxToolkit = () => {
   }
 
   const onGetTodoById = () => {
-    dispatch(getTodoById(500))
+    dispatch(getTodoById({ id: reqTodoId }))
+  }
+
+  const onChangeReqTodoId = (e) => {
+    setReqTodoId(e.target.value)
   }
 
   const onAddTodo = (e) => {
@@ -54,7 +60,8 @@ export const HomeReduxToolkit = () => {
       <Box position="fixed" right={16} bottom={16}>
         <Button onClick={openModal} variant="contained" color="primary" style={{ marginRight: 16 }}>Add Todo</Button>
         <Button onClick={onGetTodos} variant="contained" color="primary" style={{ marginRight: 16 }}>Get Todos</Button>
-        <Button onClick={onGetTodoById} variant="contained" color="primary" style={{ marginRight: 16 }}>Get todo by id</Button>
+        <Button onClick={onGetTodoById} variant="contained" color="primary" style={{ marginRight: 8 }}>Get todo by id</Button>
+        <Input onChange={onChangeReqTodoId} value={reqTodoId} variant='filled' style={{ width: 50, backgroundColor: '#fff',marginRight: 16, borderRadius: 4, padding:'2px 8px' }} />
         <Button onClick={onDeleteAllTodos} variant="contained" color="secondary">Delete all Todos</Button>
       </Box>
 

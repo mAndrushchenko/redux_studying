@@ -5,12 +5,23 @@ import { todosToolkitApi } from "../../../api/todosToolkitApi";
 
 export const getTodos = createAsyncThunk(
   "todos/getTodos",
-  async () => await todosToolkitApi.getTodos()
+  async () => {
+    const newTodos = await todosToolkitApi.getTodos();
+    return newTodos.map((todo, i)  => ({ ...todo, id: Date.now() + i }))
+  }
 );
 
 export const getTodoById = createAsyncThunk(
   "todos/getTodoById",
-  async (id) => await todosToolkitApi.getTodoById(id)
+  async ({ id }, { rejectWithValue, getState }) => {
+    const newTodo = await todosToolkitApi.getTodoById(id);
+    const { todos } = getState();
+
+    if (!newTodo?.id) return rejectWithValue(`Todo with id: ${id} doesn't exist.`);
+    if (todos.find(todo => todo.id === newTodo.id)) return rejectWithValue(`Todo with id: ${id} already exist in your list.`);
+
+    return newTodo;
+  }
 );
 
 export const todosSlice = createSlice({
@@ -54,8 +65,8 @@ export const todosSlice = createSlice({
       console.log("%cSuccess", "color: #228B22");
       state.push(action.payload);
     },
-    [getTodoById.rejected]: () => {
-      console.error("Error with request \"Get todo by id\"");
+    [getTodoById.rejected]: (state, action) => {
+      console.error("Error with request 'Get todo by id'.", action.payload || "");
     }
   }
 });

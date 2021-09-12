@@ -14,8 +14,8 @@ export const ModalAddTodo = ({ isModalOpen, closeModal, onAddTodo }) => (
     <Paper elevation={4}>
       <form onSubmit={onAddTodo}>
         <Box position="relative" py={2} px={5} display="flex" flexDirection="column">
-          <Box height={16}/>
           <TextField autoFocus/>
+          <Box height={16}/>
           <Button type="submit" variant="contained" color="primary">Add todo</Button>
 
           <Button onClick={closeModal}
