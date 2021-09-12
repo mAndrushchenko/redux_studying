@@ -1,8 +1,11 @@
 import { Grid } from "@material-ui/core";
-import { todosMock } from '../../../mock_data/todosMock'
 import { TodoItem } from "../todo_item";
+import { useSelector } from "react-redux";
+
+import { todosSelector } from "../../../store/redux_toolkit/slices/todosSlice";
+
 export const TodoList = () => {
-  const todos = todosMock;
+  const todos = useSelector(todosSelector);
 
   return (
     <Grid container direction='column' spacing={2}>
