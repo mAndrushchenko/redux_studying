@@ -3,17 +3,18 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import store from "./store/redux/store";
 import { HomeRedux } from "./components/redux/home_redux";
+import { toolkitStore } from "./store/redux_toolkit/store";
 import { HomeReduxToolkit } from "./components/redux_toolkit/home_redux_toolkit";
 
 const App = () => (
   <Router>
     <Switch>
-      <Route path="/toolkit"><HomeReduxToolkit/></Route>
-      <Route path="/*">
-        <Provider store={store}>
-          <HomeRedux/>
-        </Provider>
-      </Route>
+      <Provider store={toolkitStore}>
+        <Route path="/toolkit"><HomeReduxToolkit/></Route>
+      </Provider>
+      <Provider store={store}>
+        <Route path="/*"><HomeRedux/></Route>
+      </Provider>
     </Switch>
   </Router>
 );
