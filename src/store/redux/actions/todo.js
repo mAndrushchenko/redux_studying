@@ -1,26 +1,27 @@
+import { todoActionTypes } from "../action_types/todoActoionTypes";
 import { todosToolkitApi } from "../../../api/todosToolkitApi";
 
 export const addTodo = todo => ({
-    type: 'TODO:ADD_ITEM',
+    type: todoActionTypes.TODO_ADD_ITEM,
     payload: todo
 });
 
 export const toggleTodo = id => ({
-    type: 'TODO:TOGGLE',
+    type: todoActionTypes.TODO_TOGGLE,
     payload: id
 });
 
 export const deleteAllTodos = () => ({
-   type: 'TODO:REMOVE_ALL'
+   type: todoActionTypes.TODO_REMOVE_ALL
 });
 
 export const addTodos = todos => ({
-    type: 'TODO:ADD_ITEMS',
+    type: todoActionTypes.TODO_ADD_ITEMS,
     payload: todos
 });
 
 export const deleteTodo = id => ({
-    type: 'TODO:REMOVE',
+    type: todoActionTypes.TODO_REMOVE,
     payload: id
 });
 
