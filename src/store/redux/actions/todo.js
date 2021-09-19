@@ -1,3 +1,4 @@
+import store from "../store";
 import { todoActionTypes } from "../action_types/todoActoionTypes";
 import { todosToolkitApi } from "../../../api/todosToolkitApi";
 
@@ -28,8 +29,17 @@ export const deleteTodo = id => ({
 export const getTodoById = ({ id }) => async dispatch => {
     console.log("%cGet todo by id. Pending...", "color: #FFFF33");
     try {
-        console.log("%cSuccess", "color: #228B22");
+        const { todo } = store.getState();
         const res = await todosToolkitApi.getTodoById(id);
+        if (!res?.id) {
+            console.error(`Todo with id: ${id} doesn't exist.`);
+            return;
+        }
+        if (todo.todos.find(todo => todo.id === res.id)) {
+            console.error(`Todo with id: ${id} already exist in your list.`);
+            return;
+        }
+        console.log("%cSuccess", "color: #228B22");
         dispatch(addTodo(res));
     } catch (err) {
         console.error("Error with request 'Get todo by id'.", err || "");
