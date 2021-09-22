@@ -1,20 +1,20 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { todosMock } from "../../../mock_data/todosMock";
-import { todosToolkitApi } from "../../../api/todosToolkitApi";
+import { todosApi } from "../../../api/todosApi.js";
 
 export const getTodos = createAsyncThunk(
   "todos/getTodos",
   async () => {
-    const newTodos = await todosToolkitApi.getTodos();
-    return newTodos.map((todo, i)  => ({ ...todo, id: Date.now() + i }))
+    const newTodos = await todosApi.getTodos();
+    return newTodos.map((todo, i) => ({ ...todo, id: Date.now() + i }));
   }
 );
 
 export const getTodoById = createAsyncThunk(
   "todos/getTodoById",
   async ({ id }, { rejectWithValue, getState }) => {
-    const newTodo = await todosToolkitApi.getTodoById(id);
+    const newTodo = await todosApi.getTodoById(id);
     const { todos } = getState();
 
     if (!newTodo?.id) return rejectWithValue(`Todo with id: ${id} doesn't exist.`);

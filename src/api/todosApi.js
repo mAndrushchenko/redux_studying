@@ -1,6 +1,6 @@
 const endPoint = "https://jsonplaceholder.typicode.com/todos/";
 
-export const todosToolkitApi = {
+export const todosApi = {
   getTodos() {
     return fetch(endPoint).then(data => data.json());
   },

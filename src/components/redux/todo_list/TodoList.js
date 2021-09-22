@@ -4,7 +4,7 @@ import { Grid } from "@material-ui/core";
 import { TodoItem } from "../todo_item";
 
 export const TodoList = () => {
-  const todos = useSelector((state) => state.todo.todos);
+  const todos = useSelector((state) => state.todos);
 
   return (
     <Grid container direction='column' spacing={2}>

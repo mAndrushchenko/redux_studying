@@ -5,4 +5,4 @@ export const toolkitStore = configureStore({
   reducer: {
     todos: todosSlice.reducer
   }
-})
+});

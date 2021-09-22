@@ -5,7 +5,7 @@ import { applyMiddleware, combineReducers, createStore } from "redux";
 import { TodoReducer } from './reducers/todoReducer';
 
 const rootReducer = combineReducers({
-    todo: TodoReducer
+    todos: TodoReducer
 })
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunkMiddleware)));
