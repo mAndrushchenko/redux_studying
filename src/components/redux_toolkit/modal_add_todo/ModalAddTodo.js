@@ -12,9 +12,9 @@ export const ModalAddTodo = ({ isModalOpen, closeModal, onAddTodo }) => (
     style={{ display: "flex", alignItems: "center", justifyContent: "center", border: "none" }}
   >
     <Paper elevation={4}>
-      <form onSubmit={onAddTodo}>
+      <form data-testid="add-todo-form" onSubmit={onAddTodo}>
         <Box position="relative" py={2} px={5} display="flex" flexDirection="column">
-          <TextField autoFocus/>
+          <TextField data-testid="todo-input" autoFocus/>
           <Box height={16}/>
           <Button type="submit" variant="contained" color="primary">Add todo</Button>
 
@@ -27,4 +27,3 @@ export const ModalAddTodo = ({ isModalOpen, closeModal, onAddTodo }) => (
     </Paper>
   </Modal>
 );
-

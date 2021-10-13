@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Paper, Typography, Checkbox, Button } from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
 import { useDispatch } from "react-redux";
@@ -18,7 +19,7 @@ export const TodoItem = ({ todo }) => {
     <Paper elevation={3}>
       <Box px={3} py={2} display="flex" justifyContent="space-between" alignItems="center">
         <Box display="flex" alignItems="center">
-          <Checkbox onChange={onToggleTodo} color='primary' checked={todo.completed}/>
+          <Checkbox data-testid="checkbox-complete" onChange={onToggleTodo} color='primary' checked={todo.completed}/>
         </Box>
         <Typography
           variant="body1"
@@ -26,7 +27,7 @@ export const TodoItem = ({ todo }) => {
           style={{ textDecoration: todo.completed ? "line-through" : "none" }}>
           {todo.title}
         </Typography>
-        <Button onClick={onDeleteTodo} style={{ padding: 4, minWidth: 'auto'}}><ClearIcon/></Button>
+        <Button data-testid="delete-button" onClick={onDeleteTodo} style={{ padding: 4, minWidth: 'auto'}}><ClearIcon/></Button>
       </Box>
     </Paper>
   );
