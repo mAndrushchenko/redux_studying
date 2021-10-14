@@ -54,7 +54,7 @@ export const HomeReduxToolkit = () => {
   return (
     <Container maxWidth="sm">
       <Box my={5}>
-        <TodoList/>
+        <TodoList data-testid="todo-list"/>
       </Box>
 
       <Box position="fixed" right={16} bottom={16}>
@@ -65,7 +65,7 @@ export const HomeReduxToolkit = () => {
         <Button onClick={onDeleteAllTodos} variant="contained" color="secondary">Delete all Todos</Button>
       </Box>
 
-      <ModalAddTodo isModalOpen={isModalOpen} closeModal={closeModal} onAddTodo={onAddTodo}/>
+      <ModalAddTodo data-testid="modal-add-todo" isModalOpen={isModalOpen} closeModal={closeModal} onAddTodo={onAddTodo}/>
     </Container>
   );
 };

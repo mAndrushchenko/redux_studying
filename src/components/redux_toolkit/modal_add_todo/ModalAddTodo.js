@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Button, Modal, Paper, TextField } from "@material-ui/core";
 
 import ClearIcon from "@material-ui/icons/Clear";
@@ -18,7 +19,7 @@ export const ModalAddTodo = ({ isModalOpen, closeModal, onAddTodo }) => (
           <Box height={16}/>
           <Button type="submit" variant="contained" color="primary">Add todo</Button>
 
-          <Button onClick={closeModal}
+          <Button data-testid="close-modal" onClick={closeModal}
                   style={{ padding: 4, minWidth: "auto", position: "absolute", right: 8, top: 8 }}>
             <ClearIcon/>
           </Button>

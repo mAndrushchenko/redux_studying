@@ -6,7 +6,11 @@ module.exports = {
         modules: false,
       },
     ],
-    '@babel/react',
+    [
+      "@babel/react",
+      {
+        "runtime": "automatic"
+      }]
   ],
   env: {
     test: {
